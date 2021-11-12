@@ -1,0 +1,60 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Nov 10 22:01:53 2021
+
+@author: jackl
+"""
+
+# Collatz Conjecture Algorithm
+# Jack Laingen
+# 10 November 2021
+# Objective 1: Create an algorithm to compute the Collatz Conjecture for a list of integers.
+# Objective 2: Record highest value for each integer orbit, and plot for each integer.
+import matplotlib.pyplot as plt
+
+# 1. Parameters
+
+n = 10001
+integers = []
+high_nums = []
+iters = []
+
+#2. Outer Loop
+for n in range(2,n+1):
+    
+    new_num = n
+    list = []
+    
+# 3. Collatz Function
+    while not new_num == 1:
+        if (new_num % 2) == 0:
+            new_num = new_num/2
+            list.append(new_num)
+        else:
+            new_num = 5*new_num + 1
+            list.append(new_num)
+        #print(new_num)
+  
+# 4. Results
+    high_nums.append(max(list))
+    integers.append(n)
+    iters.append(len(list))
+    
+# 5. Plotting Results
+
+#print(high_nums)
+#print(integers)
+
+plt.figure(figsize=(8, 16))
+plt.plot(integers, high_nums, 'g.')
+plt.xlabel('Integers')
+plt.ylabel('Highest number in sequence')
+plt.xlim(0, 10000)
+plt.ylim(0, 100000)
+
+plt.figure(figsize=(8, 8))
+plt.plot(integers, iters, 'm.')
+plt.xlabel('Integers')
+plt.ylabel('Number of iterations to 1')
+plt.xlim(0, 10000)
+plt.ylim(0, 250)
